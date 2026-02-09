@@ -1,15 +1,24 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-void main() {
-    //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-    // to see how IntelliJ IDEA suggests fixing it.
-    IO.println(String.format("Hello and welcome!"));
+package com.restaurante.model;
 
-    for (int i = 1; i <= 10; i++) {
-        //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-        // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-        IO.println("i = " + i); //Prueba de git
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("=== PRUEBAS DEL SISTEMA DE PEDIDOS ===\n");
 
+        Pedido pedido1 = new Pedido("Fayna Caballero");
 
+        pedido1.agregarArticulo("Hamburguesa clásica", 2, 9.50);
+        pedido1.agregarArticulo("Papas fritas", 1, 4.20);
+        pedido1.agregarArticulo("Coca-Cola", 2, 2.80);
+
+        pedido1.mostrarResumen();
+
+        System.out.println("\nCambiando estado...");
+        pedido1.cambiarEstado(EstadoPedido.LISTO_PARA_ENTREGAR);
+        pedido1.cambiarEstado(EstadoPedido.ENTREGADO);
+
+        // Esto debe fallar (retroceder)
+        pedido1.cambiarEstado(EstadoPedido.EN_PREPARACION);
+
+        pedido1.mostrarResumen();
     }
 }
